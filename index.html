@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Happy Birthday</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Google Fonts for Elegant Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Animated Flying Hearts Canvas -->
+  <canvas id="heartCanvas"></canvas>
+
+  <main class="container">
+    <div class="card" id="birthdayCard">
+      
+      <!-- Card Front -->
+      <div class="card-front">
+        <div class="border-frame"></div>
+        <div class="content">
+          <span class="sub-title">A Special Celebration</span>
+          <h1 class="title">Happy<br>Birthday</h1>
+          <p class="tagline">Tap to open your card</p>
+          <div class="seal">✦</div>
+        </div>
+      </div>
+
+      <!-- Card Inside Message -->
+      <div class="card-inside">
+        <div class="border-frame"></div>
+        <div class="content">
+          <h2 class="inside-header">Wishing You Magic & Joy</h2>
+          <div class="divider">❖</div>
+          <p class="message">
+            May your birthday be as brilliant and wonderful as you are. 
+            May this year bring endless happiness, unforgettable memories, and success in everything you pursue.
+          </p>
+          <p class="message-sub">Here’s to another fabulous year.</p>
+          <div class="signature">
+            <span>With all my love,</span>
+            <strong id="senderName">[ Your Name ]</strong>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
