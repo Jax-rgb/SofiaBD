@@ -1,0 +1,222 @@
+/* ==========================================================================
+   Base Styles & Purple Palette
+   ========================================================================== */
+:root {
+  --bg-deep-purple: #0f051d;
+  --card-bg: #1e0b36;
+  --card-border: rgba(212, 175, 55, 0.35);
+  --gold-primary: #f3e5ab;
+  --gold-accent: #d4af37;
+  --purple-accent: #a855f7;
+  --text-light: #f3e8ff;
+  --text-muted: #c084fc;
+  --font-serif: 'Cinzel', Georgia, serif;
+  --font-sans: 'Montserrat', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  background: radial-gradient(circle at center, #230b42 0%, var(--bg-deep-purple) 100%);
+  color: var(--text-light);
+  font-family: var(--font-sans);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 1200px;
+}
+
+#heartCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   Responsive Card Shell
+   ========================================================================== */
+.container {
+  position: relative;
+  z-index: 2;
+  width: 88vw;
+  max-width: 400px;
+  height: 72vh;
+  max-height: 580px;
+}
+
+.card {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: pointer;
+}
+
+.card.open {
+  transform: rotateY(-180deg);
+}
+
+.card-front, .card-inside {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+  background: var(--card-bg);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7),
+              0 0 15px rgba(168, 85, 247, 0.2);
+  padding: 28px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  backface-visibility: hidden;
+}
+
+.card-front {
+  z-index: 2;
+}
+
+.card-inside {
+  transform: rotateY(180deg);
+  z-index: 1;
+}
+
+/* Hover for desktop non-touch devices */
+@media (hover: hover) {
+  .card:hover:not(.open) {
+    transform: translateY(-4px) scale(1.01);
+  }
+}
+
+/* ==========================================================================
+   Decorative Styling & Typography
+   ========================================================================== */
+.border-frame {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  pointer-events: none;
+}
+
+.border-frame::after {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  right: 4px;
+  bottom: 4px;
+  border: 1px dashed rgba(243, 229, 171, 0.2);
+  border-radius: 8px;
+}
+
+.content {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+}
+
+.sub-title {
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--purple-accent);
+  margin-bottom: 16px;
+  display: block;
+  font-weight: 600;
+}
+
+.title {
+  font-family: var(--font-serif);
+  font-size: 2.4rem;
+  line-height: 1.15;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--gold-primary), var(--gold-accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 20px;
+}
+
+.tagline {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  letter-spacing: 0.5px;
+}
+
+.seal {
+  margin-top: 25px;
+  font-size: 1.2rem;
+  color: var(--gold-accent);
+}
+
+/* Inside Layout */
+.inside-header {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  color: var(--gold-primary);
+  margin-bottom: 12px;
+}
+
+.divider {
+  color: var(--purple-accent);
+  font-size: 0.8rem;
+  margin-bottom: 16px;
+}
+
+.message {
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: var(--text-light);
+  font-weight: 300;
+  margin-bottom: 12px;
+}
+
+.message-sub {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-style: italic;
+  margin-bottom: 24px;
+}
+
+.signature {
+  font-size: 0.8rem;
+  color: var(--text-light);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.signature strong {
+  color: var(--gold-accent);
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+}
+
+/* Small Phone Optimizations */
+@media (max-width: 360px) {
+  .title { font-size: 2rem; }
+  .inside-header { font-size: 1.15rem; }
+  .message { font-size: 0.8rem; }
+}
