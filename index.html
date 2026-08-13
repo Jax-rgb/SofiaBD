@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Sofia!</title>
+    <style>
+        /* Base Styling & Background Gradient */
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: radial-gradient(circle, #b19ffb 0%, #8c76ec 100%);
+            font-family: 'Georgia', serif;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Floating Hearts Container */
+        .hearts-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* Heart Element Setup */
+        .heart {
+            position: absolute;
+            bottom: -20px;
+            background-color: rgba(255, 255, 255, 0.4);
+            display: inline-block;
+            height: 16px;
+            width: 16px;
+            transform: rotate(-45deg);
+            animation: floatUp 8s linear infinite;
+        }
+
+        .heart::before,
+        .heart::after {
+            content: "";
+            background-color: inherit;
+            border-radius: 50%;
+            height: 16px;
+            position: absolute;
+            width: 16px;
+        }
+
+        .heart::before {
+            top: -8px;
+            left: 0;
+        }
+
+        .heart::after {
+            left: 8px;
+            top: 0;
+        }
+
+        /* Floating Animation */
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) rotate(-45deg) scale(0.5);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.6;
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-105vh) rotate(-45deg) scale(1.2);
+                opacity: 0;
+            }
+        }
+
+        /* Envelope / Card Main Structure */
+        .envelope-container {
+            position: relative;
+            z-index: 10;
+            width: 320px;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15));
+        }
+
+        /* Purple Envelope Top Flap */
+        .envelope-flap {
+            width: 0;
+            height: 0;
+            border-left: 160px solid transparent;
+            border-right: 160px solid transparent;
+            border-bottom: 70px solid #9c27b0;
+            margin-bottom: -1px; /* Prevents visual gaps */
+        }
+
+        /* Purple Envelope Body */
+        .envelope-body {
+            background-color: #9c27b0;
+            width: 320px;
+            height: 180px;
+            border-radius: 0 0 8px 8px;
+            padding: 15px;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Inner Letter Styling */
+        .letter-card {
+            background-color: #fffaf0;
+            width: 100%;
+            height: 100%;
+            border-radius: 4px;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        /* Typography */
+        h1 {
+            font-size: 1.3rem;
+            color: #4a4a4a;
+            margin: 0 0 12px 0;
+            font-weight: normal;
+        }
+
+        p {
+            font-size: 0.95rem;
+            color: #5a5a5a;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        /* Red Text Heart */
+        .text-heart {
+            color: #d32f2f;
+            font-size: 1.1rem;
+            display: inline-block;
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Floating Background Layer -->
+    <div class="hearts-container" id="heartsContainer"></div>
+
+    <!-- Centerpiece Envelope & Card -->
+    <div class="envelope-container">
+        <div class="envelope-flap"></div>
+        <div class="envelope-body">
+            <div class="letter-card">
+                <h1>Happy Birthday Sofia!</h1>
+                <p>Thank you for <span class="text-heart">♥</span>ys trying and giving your best!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript to Generate Floating Hearts -->
+    <script>
+        function createHeart() {
+            const container = document.getElementById('heartsContainer');
+            if (!container) return;
+
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            
+            // Randomize position across the screen width
+            heart.style.left = Math.random() * 100 + 'vw';
+            
+            // Randomize size variation slightly
+            const sizeModifier = Math.random() * 0.6 + 0.7;
+            heart.style.transform = `rotate(-45deg) scale(${sizeModifier})`;
+            
+            // Randomize speed/duration of climb
+            const duration = Math.random() * 4 + 6; // 6s to 10s
+            heart.style.animationDuration = duration + 's';
+            
+            // Randomize slight variations in white transparency
+            const opacity = Math.random() * 0.3 + 0.2;
+            heart.style.backgroundColor = `rgba(255, 255, 255, ${opacity})`;
+
+            container.appendChild(heart);
+
+            // Clean up heart element after animation ends
+            setTimeout(() => {
+                heart.remove();
+            }, duration * 1000);
+        }
+
+        // Generate a new heart every 400ms
+        setInterval(createHeart, 400);
+    </script>
+</body>
+</html>
